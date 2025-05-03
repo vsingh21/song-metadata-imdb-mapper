@@ -36,17 +36,24 @@ This project requires two dataset files from IMDb's non-commercial datasets.
 
 ## Project Files
 
-├── 01_fetch_song_data.py      # Script to fetch and parse song metadata
-├── 02_map_names_to_nconst.py  # Script to map people to IMDb IDs (nconst)
-├── 03_map_films_to_tconst.py  # Script to map films to IMDb IDs (tconst)
-├── name.basics.tsv            # (Downloaded and unzipped from IMDb)
-├── title.basics.tsv           # (Downloaded and unzipped from IMDb)
-├── README.md                  # This file
---- Output files (will be generated after running scripts) ---
+```
+├── getGiitaayanData.py         # Script to fetch and parse song metadata  
+├── genPeopleNconstsCSV.py      # Script to map people to IMDb IDs (nconst)  
+├── genFilmTconstsCSV.py        # Script to map films to IMDb IDs (tconst)  
+├── name.basics.tsv             # IMDb dataset (downloaded and unzipped)  
+├── title.basics.tsv            # IMDb dataset (downloaded and unzipped)  
+├── README.md                   # This file  
+```
 
-├── all_songs.json             # Output of script 01
-├── people_nconsts.csv         # Output of script 02
-├── film_tconsts.csv           # Output of script 03
+### Output Files  
+*Generated after running the scripts above:*
+
+```
+├── all_songs.json              
+├── people_nconsts.csv          
+├── film_tconsts.csv            
+```
+
 
 
 *(Note: You might need to rename your script files to match `01_...`, `02_...`, `03_...` if you haven't already, or adjust the commands below accordingly.)*
@@ -57,19 +64,19 @@ Run the scripts sequentially from your terminal in the project directory:
 
 1.  **Fetch and Parse Song Data:**
     ```bash
-    python 01_fetch_song_data.py
+    python getGiitaayanData.py
     ```
     This will create the `all_songs.json` file. Wait for it to complete before proceeding.
 
 2.  **Map People Names to IMDb IDs:**
     ```bash
-    python 02_map_names_to_nconst.py
+    python genPeopleNconstsCSV.py
     ```
     This reads `all_songs.json` and `name.basics.tsv`, then creates `people_nconsts.csv`.
 
 3.  **Map Film Titles to IMDb IDs:**
     ```bash
-    python 03_map_films_to_tconst.py
+    python genFilmTconstsCSV.py
     ```
     This reads `all_songs.json` and `title.basics.tsv`, then creates `film_tconsts.csv`.
 
