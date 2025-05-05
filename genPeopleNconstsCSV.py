@@ -1,5 +1,6 @@
 """ 
-Maps names of people from the JSON file of Giitayan songs to unique IMDb IDs using the publicly-accessible TSV names file.
+Maps names of people from the JSON file of Giitayan songs to unique IMDb IDs using the publicly-accessible TSV names file. 
+Writes the mappings to a CSV file.
 """
 
 import json
@@ -9,7 +10,7 @@ SONGS_JSON_FILE = "all_songs.json"
 NAME_BASICS_TSV_FILE = "name.basics.tsv"
 OUTPUT_CSV_FILE = "people_nconsts.csv"
 
-# Load people names from JSON file.
+# Loads information from the JSON file of song data.
 print(f"Loading song data from {SONGS_JSON_FILE}...")
 try:
     with open(SONGS_JSON_FILE, "r", encoding="utf-8") as f:
@@ -24,6 +25,7 @@ except Exception as e:
     print(f"Unexpected error loading {SONGS_JSON_FILE}: {e}")
     exit(1)
 
+# Extracts person names from the JSON file of song data.
 print("Extracting unique names from song data...")
 people_set = set()
 for song in songs:
@@ -34,7 +36,7 @@ for song in songs:
 
 print(f"Found {len(people_set)} unique names in song data.")
 
-# Match names to IDs from the TSV names file.
+# Matches person names to IDs from the TSV names file.
 print(f"Reading {NAME_BASICS_TSV_FILE} and mapping names to IDs...")
 name_to_id = {}
 try:
@@ -75,7 +77,7 @@ unmatched_count = len(people_set) - len(name_to_id)
 if unmatched_count > 0:
     print(f"Warning: {unmatched_count} names had no matching ID.")
 
-# Write name-ID mappings to CSV file.
+# Writes name-ID mappings to CSV file.
 print(f"Writing results to {OUTPUT_CSV_FILE}...")
 try:
     with open(OUTPUT_CSV_FILE, "w", newline='', encoding="utf-8") as f:
