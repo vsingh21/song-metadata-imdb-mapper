@@ -80,8 +80,7 @@ try:
                     film_to_id[key] = tconst
                     matched_films += 1
 
-            if processed_lines % 100000 == 0:
-                print(f"  Processed {processed_lines} lines...")
+        print(f"  Processed {processed_lines} lines...")
 
 except FileNotFoundError:
     print(f"Error: Input file not found: {TITLE_BASICS_TSV_FILE}")
