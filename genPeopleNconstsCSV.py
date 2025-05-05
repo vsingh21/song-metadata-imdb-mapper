@@ -62,8 +62,7 @@ try:
                     name_to_id[name] = nconst
                     matched_names += 1
 
-            if processed_lines % 100000 == 0:
-                print(f"  Processed {processed_lines} lines...")
+        print(f"  Processed {processed_lines} lines...")
 
 except FileNotFoundError:
     print(f"Error: Input file not found: {NAME_BASICS_TSV_FILE}")
@@ -73,6 +72,7 @@ except Exception as e:
     exit(1)
 
 print(f"Processed {processed_lines} lines. Found IDs for {len(name_to_id)} names.")
+# Testing for unmatched people without IDs.
 unmatched_count = len(people_set) - len(name_to_id)
 if unmatched_count > 0:
     print(f"Warning: {unmatched_count} names had no matching ID.")
